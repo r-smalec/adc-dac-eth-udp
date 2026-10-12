@@ -1,0 +1,14 @@
+{
+  "taxi": {
+    "repository": "https://github.com/fpganinja/taxi.git",
+    "revision": "cc70b270b910d369ab1ad7b3855e76399fd461f1",
+    "roots": ["src/eth/rtl/taxi_eth_mac_mii.f", "src/axis/rtl/taxi_axis_async_fifo.f"],
+    "license": "CERN-OHL-S-2.0; taxi_axis_if.sv has MIT notice"
+  },
+  "wzab-hdl-library": {
+    "repository": "https://github.com/wzab/wzab-hdl-library.git",
+    "revision": "a739bb79bc83da7b0ef6fd25d9033a34b0f97ace",
+    "source": "fifo_to_udp/src/fifo_to_udp.vhd",
+    "license": "BSD-3-Clause"
+  }
+}

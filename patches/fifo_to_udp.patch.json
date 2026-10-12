@@ -1,0 +1,36 @@
+{
+  "upstream_revision": "a739bb79bc83da7b0ef6fd25d9033a34b0f97ace",
+  "upstream_path": "fifo_to_udp/src/fifo_to_udp.vhd",
+  "changes": [
+    {
+      "old": "st_counter1, st_counter2, st_data);",
+      "new": "st_counter1, st_counter2, st_data, st_finish);",
+      "count": 1
+    },
+    {
+      "old": "len            := 5*4 + 2*4 +resize(4*word_cnt, 16);",
+      "new": "len            := 5*4 + 2*4 + 2 + resize(4*word_cnt, 16);",
+      "count": 1
+    },
+    {
+      "old": "len         := 2*4 + resize(4 * word_cnt, 16);",
+      "new": "len         := 2*4 + 2 + resize(4 * word_cnt, 16);",
+      "count": 1
+    },
+    {
+      "old": "busy    <= '0';\n                  state   <= st_idle;",
+      "new": "state   <= st_finish;",
+      "count": 1
+    },
+    {
+      "old": "          when others => null;",
+      "new": "          when st_finish =>\n            -- Hold the final byte and TLAST until actually accepted.\n            tx_valid <= '1';\n            tx_last <= '1';\n            if tx_ready = '1' then\n              tx_valid <= '0';\n              tx_last <= '0';\n              busy <= '0';\n              state <= st_idle;\n            end if;\n          when others => null;",
+      "count": 1
+    },
+    {
+      "old": "        udp_hdr_start <= '0';\n      else",
+      "new": "        udp_hdr_start <= '0';\n        pkt_num <= (others => '0');\n      else",
+      "count": 1
+    }
+  ]
+}
